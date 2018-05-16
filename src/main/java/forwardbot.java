@@ -29,13 +29,13 @@ public class forwardbot extends TelegramLongPollingBot {
         if(actual_chatId == update.getMessage().getChatId()) {
             System.out.println(" [" + update.getMessage().getFrom().getUserName() + "]: " + update.getMessage().getText());
         } else {
-            if(update.getMessage().getChat().isUserChat() == true) {
+            if(update.getMessage().getChat().isUserChat()) {
                 System.out.println("#User: " + update.getMessage().getFrom().getUserName());
-            } else if(update.getMessage().getChat().isGroupChat() == true) {
+            } else if(update.getMessage().getChat().isGroupChat()) {
                 System.out.println("#Group: " + update.getMessage().getChat().getTitle());
-            } else if (update.getMessage().getChat().isChannelChat() == true) {
+            } else if (update.getMessage().getChat().isChannelChat()) {
                 System.out.println("#Channel: " + update.getMessage().getChat().getTitle());
-            } else if(update.getMessage().getChat().isSuperGroupChat() == true) {
+            } else if(update.getMessage().getChat().isSuperGroupChat()) {
                 System.out.println("#S-Group: " + update.getMessage().getChat().getTitle());
             } else {
                 System.out.println("#WTF: " + update.getMessage().getChat().getTitle());
@@ -59,7 +59,7 @@ public class forwardbot extends TelegramLongPollingBot {
             output.setText("Forward from added to this chat\n\n Group ID" + forwardFrom);
             System.out.println(output.getText());
         } else if ("start forward".equals(update.getMessage().getText())) {                 //start forwarding messages
-            if(forwardStart == true) {
+            if(forwardStart) {
                 output.setText("Forward is already started");
                 System.out.println(output.getText());
             } else {
@@ -68,7 +68,7 @@ public class forwardbot extends TelegramLongPollingBot {
                 System.out.println(output.getText());
             }
         } else if ("stop forward".equals(update.getMessage().getText())) {                  //stop forwarding messages
-            if(forwardStart == false) {
+            if(!forwardStart) {
                 output.setText("Forward is already stopped");
                 System.out.println(output.getText());
             } else {
@@ -80,7 +80,7 @@ public class forwardbot extends TelegramLongPollingBot {
             output.setText("List of commands:\nset forward here\nset forward from\nstart forward\nstop forward\nhelp");
             System.out.println(output.getText());
         }
-        if(forwardStart == true) {
+        if(forwardStart) {
             if (forwardFrom == update.getMessage().getChatId()) {
                 try {
                     execute(fwmsg(forwardTo, forwardFrom, update.getMessage().getMessageId()));
