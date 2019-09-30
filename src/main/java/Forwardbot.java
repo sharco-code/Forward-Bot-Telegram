@@ -4,7 +4,7 @@ import org.telegram.telegrambots.api.objects.Update;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.exceptions.TelegramApiException;
 
-public class forwardbot extends TelegramLongPollingBot {
+public class Forwardbot extends TelegramLongPollingBot {
 
     //forward variables
     private long forwardTo;
