@@ -6,15 +6,12 @@ import org.telegram.telegrambots.exceptions.TelegramApiException;
 
 public class Forwardbot extends TelegramLongPollingBot {
 
-    //forward variables
     private long forwardTo;
     private long forwardFrom;
     private boolean forwardStart;
-
-    //variable to print actual chat
+    
     private long actual_chatId;
 
-    //forward function
     private ForwardMessage fwmsg(long to, long from, Integer msgid) {
         ForwardMessage fwmsg = new ForwardMessage();
         fwmsg.setChatId(to);
@@ -46,7 +43,6 @@ public class Forwardbot extends TelegramLongPollingBot {
         SendMessage output = new SendMessage().setChatId(update.getMessage().getChatId());
         output.setText(null);
 
-        //commands
         if("set forward here".equals(update.getMessage().getText())) {                      //set the chat to forward messages
             forwardTo = update.getMessage().getChatId();
             output.setText("Forward to added to this chat\n\n Group ID: " + forwardTo);
