@@ -25,7 +25,6 @@ public class Forwardbot extends TelegramLongPollingBot {
 
     public void onUpdateReceived(Update update) {
 
-        //this sentence prints the kind of chat that is
         if(actual_chatId == update.getMessage().getChatId()) {
             System.out.println(" [" + update.getMessage().getFrom().getUserName() + "]: " + update.getMessage().getText());
         } else {
@@ -43,11 +42,9 @@ public class Forwardbot extends TelegramLongPollingBot {
             System.out.println(" [" + update.getMessage().getFrom().getUserName() + "]: " + update.getMessage().getText());
             actual_chatId = update.getMessage().getChatId();
         }
-
-        //----------------------------------
+        
         SendMessage output = new SendMessage().setChatId(update.getMessage().getChatId());
         output.setText(null);
-        //----------------------------------
 
         //commands
         if("set forward here".equals(update.getMessage().getText())) {                      //set the chat to forward messages
@@ -90,8 +87,7 @@ public class Forwardbot extends TelegramLongPollingBot {
                 }
             }
         }
-
-        //this sentence sends a message... or not
+        
         if(output.getText() != null) {
             try {
                 execute(output);
